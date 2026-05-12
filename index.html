@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WonderOz JasTip — Shipping & Jastip Service Australia ↔ Indonesia</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link rel="stylesheet" href="style.css?v=1.0">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-logo">
+    <a href="#" onclick="resetForm(); return false;" style="display:inline-block;line-height:0;">
+      <img src="logo.png" alt="WonderOz Logo" style="height:80px;width:auto;">
+    </a>
+  </div>
+  <nav id="mainNav">
+    <a href="#form-section" onclick="resetForm(); setTimeout(()=>document.getElementById('form-section').scrollIntoView({behavior:'smooth'}),50); return false;" data-i18n="nav_form">Shipping Form</a>
+    <a href="#footer-section" data-i18n="nav_contact">Contact Us</a>
+    <a href="#form-section" class="nav-cta" onclick="resetForm(); setTimeout(()=>document.getElementById('form-section').scrollIntoView({behavior:'smooth'}),50); return false;" data-i18n="nav_ship">Ship Now</a>
+  </nav>
+
+  <!-- Language switcher -->
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-btn active" id="langEN" onclick="setLang('en')">
+      <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="EN"> EN
+    </button>
+    <button class="lang-btn" id="langID" onclick="setLang('id')">
+      <img src="https://flagcdn.com/w20/id.png" srcset="https://flagcdn.com/w40/id.png 2x" alt="ID"> ID
+    </button>
+  </div>
+
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <div class="deco-icon deco-1">📦</div>
+    <div class="deco-icon deco-2">🚢</div>
+    <div class="deco-icon deco-3">📋</div>
+    <div class="deco-icon deco-4">🏷️</div>
+    <div class="deco-icon deco-5">🔒</div>
+    <div class="deco-icon deco-6">📦</div>
+  </div>
+  <div class="plane-track" aria-hidden="true">
+    <div class="plane-dot dot-au"></div>
+    <div class="flight-path-line"></div>
+    <div class="plane-emoji">✈️</div>
+    <div class="plane-dot dot-id"></div>
+  </div>
+  <div class="badge" data-i18n="hero_badge">Trusted Shipping &amp; Personal Shopper Service</div>
+  <h1><span class="h1-line1"><span data-i18n="hero_h1_pre">Ship Your Items</span> <span class="r" id="heroFrom">Australia</span> ↔ <span class="g" id="heroTo">Indonesia</span></span><span class="h1-line2" data-i18n="hero_h1_sub">Easy, Safe &amp; Reliable</span></h1>
+
+  <div class="hero-direction-wrapper" id="heroDirectionWrapper">
+    <div class="hero-direction-label">
+      <span class="hero-direction-label-icon">📦</span>
+      <span data-i18n="hero_dir_label">Select your <strong>shipping direction</strong> before ordering</span>
+      <span class="hero-direction-req">*</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-block">
+        <div class="stat-num r" style="font-size:36px;line-height:1;">
+          <img id="heroFlagFrom" src="https://flagcdn.com/w40/au.png" srcset="https://flagcdn.com/w80/au.png 2x" alt="Australia flag" class="flag-img-lg" style="width:48px;height:36px;">
+        </div>
+        <div class="stat-country" id="heroStatFromCountry" style="margin-top:6px;">Australia</div>
+      </div>
+      <div class="stat-divider">
+        <button class="switch-btn" onclick="switchDirection()" id="heroSwitchBtn" data-i18n-title="switch_dir_title">⇄</button>
+      </div>
+      <div class="hero-stat-block">
+        <div class="stat-num g" style="font-size:36px;line-height:1;">
+          <img id="heroFlagTo" src="https://flagcdn.com/w40/id.png" srcset="https://flagcdn.com/w80/id.png 2x" alt="Indonesia flag" class="flag-img-lg" style="width:48px;height:36px;">
+        </div>
+        <div class="stat-country" id="heroStatToCountry" style="margin-top:6px;">Indonesia</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN FORM -->
+<div class="main-content" id="form-section">
+  <div class="form-card">
+    <div class="form-card-header">
+      <h2 data-i18n="form_title">📦 WonderOz JasTip Shipping Form</h2>
+      <p><span data-i18n="form_subtitle">To ensure we can best assist you, please provide thorough and accurate details. A representative will contact you following your submission. For immediate support, please reach our customer care team at</span>&#160;<a href="https://wa.me/6287722284847" target="_blank" rel="noopener noreferrer" style="white-space:nowrap;display:inline-block;">+62-877-222-TITIP</a>.</p>
+    </div>
+    <div class="form-body">
+      <form id="shipForm" novalidate>
+
+        <!-- CUSTOMER TYPE -->
+        <div class="section">
+          <div class="section-title"><span class="dot dot-g"></span> <span data-i18n="sect_sender">Sender</span></div>
+          <div class="radio-group">
+            <label class="radio-card" id="rc_new" onclick="pickKategori('New Customer','rc_new','rc_regular')">
+              <input type="radio" name="kategori" value="New Customer" required>
+              <div>
+                <div class="rc-label" data-i18n="lbl_new_cust">🆕 New Customer</div>
+                <div class="rc-sub" data-i18n="lbl_new_cust_sub">First time using WonderOz JasTip</div>
+              </div>
+            </label>
+            <label class="radio-card" id="rc_regular" onclick="pickKategori('Regular Customer','rc_regular','rc_new')">
+              <input type="radio" name="kategori" value="Regular Customer">
+              <div>
+                <div class="rc-label" data-i18n="lbl_reg_cust">⭐ Regular Customer</div>
+                <div class="rc-sub" data-i18n="lbl_reg_cust_sub">Have used WonderOz JasTip before</div>
+              </div>
+            </label>
+          </div>
+          <div class="err-msg" id="err_kategori" data-i18n="err_kategori">⚠ Please select a customer type.</div>
+        </div>
+
+        <!-- NEW CUSTOMER FIELDS -->
+        <div class="section customer-section" id="newCustomerSection">
+          <div class="section-title"><span class="dot dot-r"></span> <span data-i18n="sect_sender">Sender</span></div>
+          <div class="grid-2">
+            <div class="field">
+              <label><span data-i18n="lbl_fullname">Full Name</span> <span class="req">*</span></label>
+              <input type="text" id="nama_pengirim" data-i18n-placeholder="ph_fullname">
+              <div class="err-msg" id="err_nama_pengirim" data-i18n="err_nama">⚠ Please enter your name.</div>
+            </div>
+            <div class="field">
+              <label><span data-i18n="lbl_phone">Phone Number</span> <span class="req">*</span></label>
+              <input type="tel" id="telp_pengirim" placeholder="+61412345678">
+              <div class="err-msg" id="err_telp_pengirim" data-i18n="err_phone">⚠ Please enter your phone number.</div>
+            </div>
+          </div>
+          <div class="field mt">
+            <label><span data-i18n="lbl_email">Email Address</span> <span class="req">*</span></label>
+            <input type="email" id="email_pengirim" placeholder="username@email.com">
+            <div class="err-msg" id="err_email_pengirim" data-i18n="err_email">⚠ Please enter a valid email address.</div>
+          </div>
+        </div>
+
+        <!-- REGULAR CUSTOMER: EMAIL CHECK -->
+        <div class="section customer-section" id="regularCustomerSection">
+          <div class="section-title"><span class="dot dot-r"></span> <span data-i18n="sect_returning">Returning Customer Verification</span></div>
+          <div class="field">
+            <label><span data-i18n="lbl_email">Email Address</span> <span class="req">*</span></label>
+            <div class="email-check-area">
+              <input type="email" id="email_regular" placeholder="username@email.com" style="padding-right:90px;">
+              <button type="button" class="email-check-btn" id="btnCheckEmail" onclick="checkCustomerEmail()" data-i18n="btn_check">Check</button>
+            </div>
+            <div class="hint" data-i18n="hint_email_check">We'll verify your email in our customer database.</div>
+            <div class="err-msg" id="err_email_regular" data-i18n="err_email_enter">⚠ Please enter your email address.</div>
+          </div>
+          <div class="email-check-result" id="emailCheckResult"></div>
+          <div id="regularFoundFields" style="display:none;margin-top:16px;">
+            <div class="field">
+              <label><span data-i18n="lbl_confirm_name">Confirm Your Name</span> <span class="req">*</span></label>
+              <input type="text" id="nama_pengirim_regular" data-i18n-placeholder="ph_confirm_name">
+              <div class="hint" data-i18n="hint_phone_onfile">Your phone number is already on file — no need to re-enter.</div>
+              <div class="err-msg" id="err_nama_pengirim_regular" data-i18n="err_confirm_name">⚠ Please confirm your name.</div>
+            </div>
+          </div>
+          <div id="regularNotFoundFields" style="display:none;margin-top:16px;">
+            <div style="background:#FFF9E6;border-left:4px solid #F0A500;padding:12px 16px;border-radius:8px;font-size:13px;color:#7a5c00;margin-bottom:16px;" data-i18n="msg_not_found">
+              ⚠ Your email was not found in our database. Please fill in as a New Customer.
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label><span data-i18n="lbl_fullname">Full Name</span> <span class="req">*</span></label>
+                <input type="text" id="nama_pengirim_new2" data-i18n-placeholder="ph_fullname">
+                <div class="err-msg" id="err_nama_pengirim_new2" data-i18n="err_nama">⚠ Please enter your name.</div>
+              </div>
+              <div class="field">
+                <label><span data-i18n="lbl_phone">Phone Number</span> <span class="req">*</span></label>
+                <input type="tel" id="telp_pengirim_new2" placeholder="+61412345678">
+                <div class="err-msg" id="err_telp_pengirim_new2" data-i18n="err_phone">⚠ Please enter your phone number.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECIPIENT -->
+        <div class="section">
+          <div class="section-title"><span class="dot dot-g"></span> <span data-i18n="sect_recipient">Recipient</span></div>
+          <div class="grid-2">
+            <div class="field">
+              <label><span data-i18n="lbl_fullname">Full Name</span> <span class="req">*</span></label>
+              <input type="text" id="nama_penerima" data-i18n-placeholder="ph_recipient_name" autocomplete="off">
+              <div class="err-msg" id="err_nama_penerima" data-i18n="err_recipient_name">⚠ Please enter the recipient's name.</div>
+            </div>
+            <div class="field">
+              <label><span data-i18n="lbl_phone">Phone Number</span> <span class="req">*</span></label>
+              <input type="tel" id="telp_penerima" placeholder="+6281234567890" autocomplete="off">
+              <div class="err-msg" id="err_telp_penerima" data-i18n="err_recipient_phone">⚠ Please enter the recipient's phone number.</div>
+            </div>
+          </div>
+          <div class="field mt">
+            <label><span data-i18n="lbl_email">Email Address</span> <span class="req">*</span></label>
+            <input type="email" id="email_penerima" placeholder="username@email.com" autocomplete="off">
+            <div class="err-msg" id="err_email_penerima" data-i18n="err_email">⚠ Please enter a valid email address.</div>
+          </div>
+          <div class="field mt">
+            <label><span data-i18n="lbl_address">Full Address</span> <span class="req">*</span></label>
+            <textarea id="alamat_penerima" data-i18n-placeholder="ph_address" autocomplete="off"></textarea>
+            <div class="hint" data-i18n="hint_address">Please include the full address and postcode.</div>
+            <div class="err-msg" id="err_alamat_penerima" data-i18n="err_address">⚠ Please enter the recipient's full address.</div>
+          </div>
+        </div>
+
+        <!-- ITEM DESCRIPTION -->
+        <div class="section">
+          <div class="section-title"><span class="dot dot-r"></span> <span data-i18n="sect_items">Item Description</span></div>
+          <div class="field">
+            <label><span data-i18n="lbl_item_desc">What items will you be sending?</span> <span class="req">*</span></label>
+            <textarea id="deskripsi_barang" style="min-height:130px;" data-i18n-placeholder="ph_item_desc"></textarea>
+            <div class="hint" data-i18n="hint_item_desc">Please provide a detailed description including item name, quantity, dimensions, and weight per box.</div>
+            <div class="err-msg" id="err_deskripsi_barang" data-i18n="err_item_desc">⚠ Please describe the items you are sending.</div>
+          </div>
+        </div>
+
+        <!-- ITEM CATEGORY -->
+        <div class="section">
+          <div class="section-title"><span class="dot dot-g"></span> <span data-i18n="sect_category">Item Category</span></div>
+          <div class="hint" style="margin-bottom:12px;" data-i18n="hint_category">Check all categories that apply. Multiple selections allowed. <span class="req">*</span></div>
+          <div class="check-grid">
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Liquid (Non-Alcoholic)"> <span data-i18n="cat_liquid_non">Liquid (Non-Alcoholic)</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Liquid (Alcoholic)"> <span data-i18n="cat_liquid_alc">Liquid (Alcoholic)</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Jewellery or Money"> <span data-i18n="cat_jewellery">Jewellery or Money</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Electronics (No Battery)"> <span data-i18n="cat_elec_no">Electronics (No Battery)</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Electronics (With Battery)"> <span data-i18n="cat_elec_yes">Electronics (With Battery)</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Food (Snacks, Dairy, Chocolate, etc.)"> <span data-i18n="cat_food">Food (Snacks, Dairy, Chocolate, etc.)</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Medicine, Vitamins & Supplements"> <span data-i18n="cat_medicine">Medicine, Vitamins &amp; Supplements</span></label>
+            <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Clothing, Shoes & Accessories"> <span data-i18n="cat_clothing">Clothing, Shoes &amp; Accessories</span></label>
+            <label class="check-item span2" onclick="toggleCheck(this)"><input type="checkbox" name="jenis_barang" value="Pressurised Items"> <span data-i18n="cat_pressurised">Pressurised Items</span></label>
+          </div>
+          <div class="err-msg" id="err_jenis_barang" data-i18n="err_category">⚠ Please select at least one item category.</div>
+        </div>
+
+        <!-- DECLARATION -->
+        <div class="section">
+          <div class="section-title"><span class="dot dot-r"></span> <span data-i18n="sect_declaration">Declaration &amp; Agreement</span></div>
+          <div class="confirm-otp-note" data-i18n="decl_note">
+            🔒 This declaration acts as your digital confirmation. By ticking all statements, you acknowledge full responsibility for the contents of your shipment.
+          </div>
+          <div class="hint" style="margin-bottom:12px;" data-i18n="hint_decl">Please tick <b>all</b> statements to confirm. <span class="req">*</span></div>
+          <div class="confirm-list">
+            <label class="confirm-item" onclick="toggleConfirm(this)">
+              <input type="checkbox" name="konfirmasi" value="items_accurate">
+              <span data-i18n="decl_1">The items I am sending are as described in this form.</span>
+            </label>
+            <label class="confirm-item" onclick="toggleConfirm(this)">
+              <input type="checkbox" name="konfirmasi" value="aware_regulations">
+              <span data-i18n="decl_2">I understand and am aware of the items permitted for shipment in accordance with applicable regulations.</span>
+            </label>
+            <label class="confirm-item" onclick="toggleConfirm(this)">
+              <input type="checkbox" name="konfirmasi" value="no_prohibited">
+              <span data-i18n="decl_3">My shipment does not contain any prohibited items (illegal drugs, banned substances, etc.).</span>
+            </label>
+            <label class="confirm-item" onclick="toggleConfirm(this)">
+              <input type="checkbox" name="konfirmasi" value="customs_risk">
+              <span data-i18n="decl_4">I am aware of and accept the risk of potential customs delays.</span>
+            </label>
+            <label class="confirm-item" onclick="toggleConfirm(this)">
+              <input type="checkbox" name="konfirmasi" value="volumetric_weight">
+              <span data-i18n="decl_5">I understand that shipping costs are calculated based on the higher value between volumetric weight and actual weight.</span>
+            </label>
+          </div>
+          <div class="err-msg" id="err_konfirmasi" data-i18n="err_declaration">⚠ Please tick all declaration statements to proceed.</div>
+        </div>
+
+        <!-- FORBIDDEN ITEMS TRIGGER -->
+        <div class="section forbidden-trigger-section">
+          <p class="forbidden-trigger-instruction" data-i18n="forbidden_trigger_instruction">Please review the Forbidden Items by clicking the button below before submitting your request.</p>
+          <button type="button" class="btn-forbidden-trigger" id="btnForbiddenTrigger" onclick="openForbiddenModal()">
+            🚫 <span data-i18n="forbidden_trigger_btn">Forbidden Items</span>
+          </button>
+          <div class="err-msg" id="err_forbidden" data-i18n="err_forbidden">⚠ Please read the Forbidden Items before submitting your request.</div>
+        </div>
+
+        <!-- FORBIDDEN ITEMS MODAL -->
+        <div id="forbiddenModalOverlay" class="forbidden-modal-overlay" onclick="closeForbiddenModal(event)">
+          <div class="forbidden-modal" role="dialog" aria-modal="true" aria-labelledby="forbiddenModalTitle">
+            <button class="forbidden-modal-close" id="btnForbiddenClose" onclick="closeForbiddenModal(null, true)" aria-label="Close">&times;</button>
+            <div class="forbidden-modal-header">
+              <span>🚫</span>
+              <div>
+                <div class="forbidden-inline-title" id="forbiddenModalTitle" data-i18n="forbidden_title">Forbidden Items — Please Read Before Submitting</div>
+                <div class="forbidden-inline-sub"><span data-i18n="forbidden_sub">The following items are</span> <strong data-i18n="forbidden_sub_strong">NOT permitted</strong> <span data-i18n="forbidden_sub2">to be shipped via WonderOz JasTip</span></div>
+              </div>
+            </div>
+            <div class="forbidden-grid forbidden-modal-grid">
+              <div class="forbidden-item"><div class="fi-img">🔋</div><div class="fi-text" data-i18n="fi_1">Lithium batteries &amp; Power banks exceeding 160Wh</div></div>
+              <div class="forbidden-item"><div class="fi-img">🛴</div><div class="fi-text" data-i18n="fi_2">Self-Balancing Devices</div></div>
+              <div class="forbidden-item"><div class="fi-img">🔥</div><div class="fi-text" data-i18n="fi_3">Butane, Butane tools / refills or Gas Bottles</div></div>
+              <div class="forbidden-item"><div class="fi-img">🪲</div><div class="fi-text" data-i18n="fi_4">Insect Sprays</div></div>
+              <div class="forbidden-item"><div class="fi-img">🎆</div><div class="fi-text" data-i18n="fi_5">Flares, Gun / Black powder</div></div>
+              <div class="forbidden-item"><div class="fi-img">🛢️</div><div class="fi-text" data-i18n="fi_6">Fuel / Petrol, Oil Based Paint</div></div>
+              <div class="forbidden-item"><div class="fi-img">🚗</div><div class="fi-text" data-i18n="fi_7">Car / Motorbike Batteries</div></div>
+              <div class="forbidden-item"><div class="fi-img">🎇</div><div class="fi-text" data-i18n="fi_8">Fireworks, Party Poppers</div></div>
+              <div class="forbidden-item"><div class="fi-img">🔥</div><div class="fi-text" data-i18n="fi_9">"Strike Anywhere" matches, "Blue flame" or "Cigar" lighters</div></div>
+              <div class="forbidden-item"><div class="fi-img">⚡</div><div class="fi-text" data-i18n="fi_10">Non-Spillable batteries exceeding 12V and 100Wh</div></div>
+              <div class="forbidden-item"><div class="fi-img">🎨</div><div class="fi-text" data-i18n="fi_11">Paint Stripper, Hydrogen Peroxide</div></div>
+              <div class="forbidden-item"><div class="fi-img">🌶️</div><div class="fi-text" data-i18n="fi_12">Pepper Spray, Mace</div></div>
+              <div class="forbidden-item"><div class="fi-img">🧴</div><div class="fi-text" data-i18n="fi_13">Bleach, Oven Cleaner</div></div>
+              <div class="forbidden-item"><div class="fi-img">💨</div><div class="fi-text" data-i18n="fi_14">Gas Canister exceeding 28g / 50ml</div></div>
+              <div class="forbidden-item"><div class="fi-img">✨</div><div class="fi-text" data-i18n="fi_15">Sparklers, Firelighters</div></div>
+              <div class="forbidden-item"><div class="fi-img">⚡</div><div class="fi-text" data-i18n="fi_16">Taser</div></div>
+            </div>
+            <div class="forbidden-footer-note" data-i18n="forbidden_footer">
+              🚚 Items forbidden to be carried by customers must be sent as <strong>Freight</strong>. Contact us for freight options.
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="submit-area">
+          <button type="submit" class="btn-submit" id="btnSubmit">
+            <span id="btnText" data-i18n="btn_submit">Submit Form ✓</span>
+            <div class="spinner" id="spinner"></div>
+          </button>
+          <div class="submit-note" data-i18n="submit_note">By submitting this form, you agree to WonderOz JasTip's Terms &amp; Conditions.</div>
+        </div>
+
+      </form>
+
+      <div class="msg-box success" id="successBox">
+        <div class="icon">✅</div>
+        <h3 data-i18n="success_title">Form Successfully Submitted!</h3>
+        <p data-i18n="success_body">Thank you! Your shipment details have been received.<br>The WonderOz JasTip team will contact you shortly to confirm your order.<br><br>Questions? <b>+6287722284847</b></p>
+        <button class="btn-back green-btn" onclick="resetForm()" data-i18n="btn_another">Submit Another Form</button>
+      </div>
+
+      <div class="msg-box error" id="errorBox">
+        <div class="icon">❌</div>
+        <h3 data-i18n="error_title">Submission Failed</h3>
+        <p id="errorMsg" data-i18n="error_body">Something went wrong. Please try again or contact us at <b>+6287722284847</b></p>
+        <button class="btn-back red-btn" onclick="hideError()" data-i18n="btn_retry">Try Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer-section">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-col">
+        <a href="#" onclick="resetForm(); return false;" style="display:inline-block;line-height:0;">
+          <img src="logo.png" alt="WonderOz JasTip" style="height:80px;width:auto;margin-bottom:10px;display:block;">
+        </a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_contact">Contact Us</h4>
+        <div class="footer-contact-list">
+          <a href="https://wa.me/6287722284847" target="_blank" class="footer-contact-link">
+            <span class="footer-contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#25D366" style="vertical-align:middle;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
+            <span>+62-877-222-84847</span>
+          </a>
+          <a href="mailto:Hello@WonderOzJasTip.Express" class="footer-contact-link">
+            <span class="footer-contact-icon">📧</span>
+            <span>Hello@WonderOzJasTip.Express</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_follow">Follow Us</h4>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61581247740932" target="_blank" class="social-btn s-fb" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/wonderoz.jastip" target="_blank" class="social-btn s-ig" title="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#fff"/></svg>
+          </a>
+          <a href="http://www.tiktok.com/@WonderOz.JasTip" target="_blank" class="social-btn s-tt" title="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_copy">© 2026 WonderOz JasTip. All rights reserved.</span>
+      <span data-i18n="footer_legal">WonderOz JasTip is a registered business name of Prayudhi Strategic Consulting Pty Ltd. ABN: <a href="https://abr.business.gov.au/ABN/View?abn=36675629071" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">36 675 629 071</a> | ACN: <a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/bySearchId.jspx?searchIdType=BUSN&searchId=694757036" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">675 629 071</a></span>
+      <span><a href="privacy-policy.html" data-i18n="footer_privacy">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// TRANSLATIONS
+// ============================================================
+const TRANSLATIONS = {
+  en: {
+    nav_form: 'Shipping Form',
+    nav_contact: 'Contact Us',
+    nav_ship: 'Ship Now',
+    hero_badge: 'Trusted Shipping &amp; Personal Shopper Service',
+    hero_h1_pre: 'Ship Your Items',
+    hero_h1_sub: 'Easy, Safe &amp; Reliable',
+    hero_dir_label: 'Select your <strong>shipping direction</strong> before ordering',
+    switch_dir_title: 'Switch direction',
+    form_title: '📦 WonderOz JasTip Shipping Form',
+    form_subtitle: 'To ensure we can best assist you, please provide thorough and accurate details. A representative will contact you following your submission. For immediate support, please reach our customer care team at',
+    sect_sender: 'Sender',
+    lbl_new_cust: '🆕 New Customer',
+    lbl_new_cust_sub: 'First time using WonderOz JasTip',
+    lbl_reg_cust: '⭐ Regular Customer',
+    lbl_reg_cust_sub: 'Have used WonderOz JasTip before',
+    err_kategori: '⚠ Please select a customer type.',
+    lbl_fullname: 'Full Name',
+    ph_fullname: 'Full Name',
+    lbl_phone: 'Phone Number',
+    lbl_email: 'Email Address',
+    err_nama: '⚠ Please enter your name.',
+    err_phone: '⚠ Please enter your phone number.',
+    err_email: '⚠ Please enter a valid email address.',
+    sect_returning: 'Returning Customer Verification',
+    btn_check: 'Check',
+    hint_email_check: "We'll verify your email in our customer database.",
+    err_email_enter: '⚠ Please enter your email address.',
+    lbl_confirm_name: 'Confirm Your Name',
+    ph_confirm_name: 'Your name as registered',
+    hint_phone_onfile: 'Your phone number is already on file — no need to re-enter.',
+    err_confirm_name: '⚠ Please confirm your name.',
+    msg_not_found: '⚠ Your email was not found in our database. Please fill in as a New Customer.',
+    sect_recipient: 'Recipient',
+    ph_recipient_name: "Recipient's name at destination",
+    err_recipient_name: "⚠ Please enter the recipient's name.",
+    err_recipient_phone: "⚠ Please enter the recipient's phone number.",
+    lbl_address: 'Full Address',
+    ph_address: 'Street address, Suburb/District, City, Postcode',
+    hint_address: 'Please include the full address and postcode.',
+    err_address: "⚠ Please enter the recipient's full address.",
+    sect_items: 'Item Description',
+    lbl_item_desc: 'What items will you be sending?',
+    ph_item_desc: 'Example: 2 boxes – Shoes (2 pairs), Dimensions: 30 x 20 x 15 cm per box, Weight: 2 kg per box; T-shirts (5 pcs)',
+    hint_item_desc: 'Please provide a detailed description including item name, quantity, dimensions, and weight per box.',
+    err_item_desc: '⚠ Please describe the items you are sending.',
+    sect_category: 'Item Category',
+    hint_category: 'Check all categories that apply. Multiple selections allowed.',
+    cat_liquid_non: 'Liquid (Non-Alcoholic)',
+    cat_liquid_alc: 'Liquid (Alcoholic)',
+    cat_jewellery: 'Jewellery or Money',
+    cat_elec_no: 'Electronics (No Battery)',
+    cat_elec_yes: 'Electronics (With Battery)',
+    cat_food: 'Food (Snacks, Dairy, Chocolate, etc.)',
+    cat_medicine: 'Medicine, Vitamins &amp; Supplements',
+    cat_clothing: 'Clothing, Shoes &amp; Accessories',
+    cat_pressurised: 'Pressurised Items',
+    err_category: '⚠ Please select at least one item category.',
+    sect_declaration: 'Declaration &amp; Agreement',
+    decl_note: '🔒 This declaration acts as your digital confirmation. By ticking all statements, you acknowledge full responsibility for the contents of your shipment.',
+    hint_decl: 'Please tick <b>all</b> statements to confirm.',
+    decl_1: 'The items I am sending are as described in this form.',
+    decl_2: 'I understand and am aware of the items permitted for shipment in accordance with applicable regulations.',
+    decl_3: 'My shipment does not contain any prohibited items (illegal drugs, banned substances, etc.).',
+    decl_4: 'I am aware of and accept the risk of potential customs delays.',
+    decl_5: 'I understand that shipping costs are calculated based on the higher value between volumetric weight and actual weight.',
+    err_declaration: '⚠ Please tick all declaration statements to proceed.',
+    forbidden_trigger_instruction: 'Please review the Forbidden Items by clicking the button below before submitting your request.',
+    forbidden_trigger_btn: 'Forbidden Items',
+    err_forbidden: '⚠ Please read the Forbidden Items before submitting your request.',
+    forbidden_title: 'Forbidden Items — Please Read Before Submitting',
+    forbidden_sub: 'The following items are',
+    forbidden_sub_strong: 'NOT permitted',
+    forbidden_sub2: 'to be shipped via WonderOz JasTip',
+    fi_1: 'Lithium batteries &amp; Power banks exceeding 160Wh',
+    fi_2: 'Self-Balancing Devices',
+    fi_3: 'Butane, Butane tools / refills or Gas Bottles',
+    fi_4: 'Insect Sprays',
+    fi_5: 'Flares, Gun / Black powder',
+    fi_6: 'Fuel / Petrol, Oil Based Paint',
+    fi_7: 'Car / Motorbike Batteries',
+    fi_8: 'Fireworks, Party Poppers',
+    fi_9: '"Strike Anywhere" matches, "Blue flame" or "Cigar" lighters',
+    fi_10: 'Non-Spillable batteries exceeding 12V and 100Wh',
+    fi_11: 'Paint Stripper, Hydrogen Peroxide',
+    fi_12: 'Pepper Spray, Mace',
+    fi_13: 'Bleach, Oven Cleaner',
+    fi_14: 'Gas Canister exceeding 28g / 50ml',
+    fi_15: 'Sparklers, Firelighters',
+    fi_16: 'Taser',
+    forbidden_footer: '🚚 Items forbidden to be carried by customers must be sent as <strong>Freight</strong>. Contact us for freight options.',
+    btn_submit: 'Submit Form ✓',
+    submit_note: "By submitting this form, you agree to WonderOz JasTip's Terms &amp; Conditions.",
+    success_title: 'Form Successfully Submitted!',
+    success_body: 'Thank you! Your shipment details have been received.<br>The WonderOz JasTip team will contact you shortly to confirm your order.<br><br>Questions? <b>+6287722284847</b>',
+    btn_another: 'Submit Another Form',
+    error_title: 'Submission Failed',
+    error_body: 'Something went wrong. Please try again or contact us at <b>+6287722284847</b>',
+    btn_retry: 'Try Again',
+    footer_contact: 'Contact Us',
+    footer_follow: 'Follow Us',
+    footer_copy: '© 2026 WonderOz JasTip. All rights reserved.',
+    footer_legal: 'WonderOz JasTip is a registered business name of Prayudhi Strategic Consulting Pty Ltd. ABN: <a href="https://abr.business.gov.au/ABN/View?abn=36675629071" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">36 675 629 071</a> | ACN: <a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/bySearchId.jspx?searchIdType=BUSN&searchId=694757036" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">675 629 071</a>',
+    footer_privacy: 'Privacy Policy',
+    sending_text: 'Sending...',
+    email_found: (nama) => `✅ Welcome back, ${nama}! Please confirm your name below.`,
+    email_notfound: '⚠ Email not found. Please fill in as a new customer.',
+    email_timeout: '❌ Request timed out. Please try again.',
+    email_error: '❌ Could not connect to database. Please try again.',
+  },
+  id: {
+    nav_form: 'Form Pengiriman',
+    nav_contact: 'Hubungi Kami',
+    nav_ship: 'Kirim Sekarang',
+    hero_badge: 'Layanan Pengiriman &amp; Personal Shopper Terpercaya',
+    hero_h1_pre: 'Kirim Barang Anda',
+    hero_h1_sub: 'Mudah, Aman &amp; Terpercaya',
+    hero_dir_label: 'Pilih <strong>arah pengiriman</strong> sebelum memesan',
+    switch_dir_title: 'Tukar arah',
+    form_title: '📦 Form Pengiriman WonderOz JasTip',
+    form_subtitle: 'Untuk membantu kami melayani Anda dengan baik, mohon isi data dengan lengkap dan akurat. Tim kami akan menghubungi Anda setelah formulir diterima. Untuk bantuan segera, hubungi tim kami di',
+    sect_sender: 'Pengirim',
+    lbl_new_cust: '🆕 Pelanggan Baru',
+    lbl_new_cust_sub: 'Pertama kali menggunakan WonderOz JasTip',
+    lbl_reg_cust: '⭐ Pelanggan Lama',
+    lbl_reg_cust_sub: 'Sudah pernah menggunakan WonderOz JasTip',
+    err_kategori: '⚠ Silakan pilih tipe pelanggan.',
+    lbl_fullname: 'Nama Lengkap',
+    ph_fullname: 'Nama Lengkap',
+    lbl_phone: 'Nomor Telepon',
+    lbl_email: 'Alamat Email',
+    err_nama: '⚠ Mohon masukkan nama Anda.',
+    err_phone: '⚠ Mohon masukkan nomor telepon Anda.',
+    err_email: '⚠ Mohon masukkan alamat email yang valid.',
+    sect_returning: 'Verifikasi Pelanggan Lama',
+    btn_check: 'Cek',
+    hint_email_check: 'Kami akan memverifikasi email Anda di database pelanggan kami.',
+    err_email_enter: '⚠ Mohon masukkan alamat email Anda.',
+    lbl_confirm_name: 'Konfirmasi Nama Anda',
+    ph_confirm_name: 'Nama Anda sesuai yang terdaftar',
+    hint_phone_onfile: 'Nomor telepon Anda sudah tersimpan — tidak perlu diisi ulang.',
+    err_confirm_name: '⚠ Mohon konfirmasi nama Anda.',
+    msg_not_found: '⚠ Email tidak ditemukan di database kami. Silakan isi sebagai Pelanggan Baru.',
+    sect_recipient: 'Penerima',
+    ph_recipient_name: 'Nama penerima di tujuan',
+    err_recipient_name: '⚠ Mohon masukkan nama penerima.',
+    err_recipient_phone: '⚠ Mohon masukkan nomor telepon penerima.',
+    lbl_address: 'Alamat Lengkap',
+    ph_address: 'Nama jalan, Kelurahan/Kecamatan, Kota, Kode Pos',
+    hint_address: 'Mohon sertakan alamat lengkap dan kode pos.',
+    err_address: '⚠ Mohon masukkan alamat lengkap penerima.',
+    sect_items: 'Deskripsi Barang',
+    lbl_item_desc: 'Barang apa yang akan Anda kirim?',
+    ph_item_desc: 'Contoh: 2 kotak – Sepatu (2 pasang), Dimensi: 30 x 20 x 15 cm per kotak, Berat: 2 kg per kotak; Kaos (5 pcs)',
+    hint_item_desc: 'Mohon berikan deskripsi lengkap termasuk nama barang, jumlah, dimensi, dan berat per kotak.',
+    err_item_desc: '⚠ Mohon deskripsikan barang yang akan Anda kirim.',
+    sect_category: 'Kategori Barang',
+    hint_category: 'Centang semua kategori yang sesuai. Bisa pilih lebih dari satu.',
+    cat_liquid_non: 'Cairan (Non-Alkohol)',
+    cat_liquid_alc: 'Cairan (Beralkohol)',
+    cat_jewellery: 'Perhiasan atau Uang',
+    cat_elec_no: 'Elektronik (Tanpa Baterai)',
+    cat_elec_yes: 'Elektronik (Dengan Baterai)',
+    cat_food: 'Makanan (Snack, Susu, Coklat, dll.)',
+    cat_medicine: 'Obat, Vitamin &amp; Suplemen',
+    cat_clothing: 'Pakaian, Sepatu &amp; Aksesori',
+    cat_pressurised: 'Barang Bertekanan',
+    err_category: '⚠ Mohon pilih minimal satu kategori barang.',
+    sect_declaration: 'Persetujuan',
+    decl_note: '🔒 Persetujuan ini berfungsi sebagai konfirmasi digital Anda. Dengan mencentang semua pernyataan, Anda mengakui tanggung jawab penuh atas isi kiriman Anda.',
+    hint_decl: 'Centang <b>semua</b> pernyataan untuk mengkonfirmasi.',
+    decl_1: 'Barang yang saya kirim sesuai dengan yang tertulis dalam formulir ini.',
+    decl_2: 'Saya memahami dan mengetahui barang-barang yang diperbolehkan untuk dikirim sesuai peraturan yang berlaku.',
+    decl_3: 'Kiriman saya tidak mengandung barang-barang terlarang (narkoba, zat terlarang, dll.).',
+    decl_4: 'Saya mengetahui dan menerima risiko kemungkinan penundaan bea cukai.',
+    decl_5: 'Saya memahami bahwa biaya pengiriman dihitung berdasarkan nilai yang lebih tinggi antara berat volumetrik dan berat aktual.',
+    err_declaration: '⚠ Mohon centang semua pernyataan untuk melanjutkan.',
+    forbidden_trigger_instruction: 'Harap baca daftar Barang Terlarang di bawah ini sebelum mengirimkan formulir Anda.',
+    forbidden_trigger_btn: 'Barang Terlarang',
+    err_forbidden: '⚠ Harap baca daftar Barang Terlarang sebelum mengirimkan formulir.',
+    forbidden_title: 'Barang Terlarang — Harap Dibaca Sebelum Mengirim',
+    forbidden_sub: 'Barang-barang berikut',
+    forbidden_sub_strong: 'TIDAK DIPERBOLEHKAN',
+    forbidden_sub2: 'untuk dikirim melalui WonderOz JasTip',
+    fi_1: 'Baterai Lithium &amp; Power bank di atas 160Wh',
+    fi_2: 'Perangkat Self-Balancing (Hoverboard, dll.)',
+    fi_3: 'Butana, alat butana / isi ulang atau tabung gas',
+    fi_4: 'Semprotan Serangga',
+    fi_5: 'Suar, Bubuk Mesiu / Hitam',
+    fi_6: 'BBM / Bensin, Cat Berbahan Minyak',
+    fi_7: 'Aki Mobil / Motor',
+    fi_8: 'Kembang Api, Party Popper',
+    fi_9: 'Korek "Strike Anywhere", korek "Blue flame" atau "Cigar"',
+    fi_10: 'Baterai Non-Spillable di atas 12V dan 100Wh',
+    fi_11: 'Pengelupas Cat, Hidrogen Peroksida',
+    fi_12: 'Semprotan Merica, Mace',
+    fi_13: 'Pemutih, Pembersih Oven',
+    fi_14: 'Tabung Gas di atas 28g / 50ml',
+    fi_15: 'Kembang Api Tangan, Firelighter',
+    fi_16: 'Taser / Senjata Kejut',
+    forbidden_footer: '🚚 Barang yang tidak boleh dibawa oleh pelanggan harus dikirim sebagai <strong>Kargo/Freight</strong>. Hubungi kami untuk pilihan pengiriman kargo.',
+    btn_submit: 'Kirim Formulir ✓',
+    submit_note: 'Dengan mengirimkan formulir ini, Anda menyetujui Syarat &amp; Ketentuan WonderOz JasTip.',
+    success_title: 'Formulir Berhasil Dikirim!',
+    success_body: 'Terima kasih! Data kiriman Anda telah kami terima.<br>Tim WonderOz JasTip akan segera menghubungi Anda untuk konfirmasi pesanan.<br><br>Pertanyaan? <b>+6287722284847</b>',
+    btn_another: 'Kirim Formulir Lagi',
+    error_title: 'Pengiriman Gagal',
+    error_body: 'Terjadi kesalahan. Silakan coba lagi atau hubungi kami di <b>+6287722284847</b>',
+    btn_retry: 'Coba Lagi',
+    footer_contact: 'Hubungi Kami',
+    footer_follow: 'Ikuti Kami',
+    footer_copy: '© 2026 WonderOz JasTip. Hak cipta dilindungi undang-undang.',
+    footer_legal: 'WonderOz JasTip adalah nama bisnis terdaftar dari Prayudhi Strategic Consulting Pty Ltd. ABN: <a href="https://abr.business.gov.au/ABN/View?abn=36675629071" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">36 675 629 071</a> | ACN: <a href="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/bySearchId.jspx?searchIdType=BUSN&searchId=694757036" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">675 629 071</a>',
+    footer_privacy: 'Kebijakan Privasi',
+    sending_text: 'Mengirim...',
+    email_found: (nama) => `✅ Selamat datang kembali, ${nama}! Konfirmasi nama Anda di bawah.`,
+    email_notfound: '⚠ Email tidak ditemukan. Silakan isi sebagai pelanggan baru.',
+    email_timeout: '❌ Permintaan habis waktu. Silakan coba lagi.',
+    email_error: '❌ Tidak dapat terhubung ke database. Silakan coba lagi.',
+  }
+};
+
+// ============================================================
+// LANGUAGE STATE
+// ============================================================
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+
+  // Update button states
+  document.getElementById('langEN').classList.toggle('active', lang === 'en');
+  document.getElementById('langID').classList.toggle('active', lang === 'id');
+
+  const t = TRANSLATIONS[lang];
+
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined && typeof t[key] === 'string') {
+      el.innerHTML = t[key];
+    }
+  });
+
+  // Update placeholder attributes
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+
+  // Update title attributes
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (t[key]) el.title = t[key];
+  });
+
+  // Update html lang attribute
+  document.getElementById('htmlRoot').lang = lang === 'id' ? 'id' : 'en';
+
+  // Save to localStorage
+  try { localStorage.setItem('wonderoz_lang', lang); } catch(e) {}
+}
+
+function t(key, ...args) {
+  const val = TRANSLATIONS[currentLang][key];
+  if (typeof val === 'function') return val(...args);
+  return val || TRANSLATIONS['en'][key] || key;
+}
+
+// ============================================================
+// CONFIG
+// ============================================================
+const EMAILJS_PUBLIC_KEY  = 'U0rMg2Mo4nVp04F7N';
+const EMAILJS_SERVICE_ID  = 'service_7bdceub';
+const EMAILJS_TEMPLATE_ID = 'template_3ymeklq';
+const APPS_SCRIPT_URL     = 'https://script.google.com/macros/s/AKfycbzDUoms-wwq6_K2cxOlqaaSc2aSoH2kfe1AUmpFx1sGxyg6R29RqO-AagBNJ6raxwxlBw/exec';
+
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+// ============================================================
+// CITY DATA
+// ============================================================
+const CITIES = {
+  au: { flagUrl:'https://flagcdn.com/w40/au.png', flagUrl2x:'https://flagcdn.com/w80/au.png', name:'Australia' },
+  id: { flagUrl:'https://flagcdn.com/w40/id.png', flagUrl2x:'https://flagcdn.com/w80/id.png', name:'Indonesia' }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let dirFrom = 'au', dirTo = 'id';
+let selectedCityFrom = '', selectedCityTo = '';
+let otherCityFrom = '', otherCityTo = '';
+let isOtherFrom = false, isOtherTo = false;
+let selectedKategori = '';
+let customerEmailVerified = false;
+let regularPhoneOnFile = '';
+
+// ============================================================
+// HELPERS
+// ============================================================
+function setFlagSrc(elId, dir) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.src = CITIES[dir].flagUrl;
+  el.srcset = CITIES[dir].flagUrl2x + ' 2x';
+  el.alt = CITIES[dir].name + ' flag';
+}
+function showErr(id) { const el = document.getElementById(id); if (el) el.style.display = 'block'; }
+function hideErr(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
+function markField(id, err) { const el = document.getElementById(id); if (el) el.classList.toggle('field-err', err); }
+
+// ============================================================
+// INIT
+// ============================================================
+function initRouteBar() { updateHeroStats(); }
+
+function updateHeroStats() {
+  document.getElementById('heroFrom').textContent = CITIES[dirFrom].name;
+  document.getElementById('heroTo').textContent   = CITIES[dirTo].name;
+  document.getElementById('heroStatFromCountry').textContent = CITIES[dirFrom].name;
+  document.getElementById('heroStatToCountry').textContent   = CITIES[dirTo].name;
+  setFlagSrc('heroFlagFrom', dirFrom);
+  setFlagSrc('heroFlagTo',   dirTo);
+}
+
+function switchDirection() {
+  [dirFrom, dirTo] = [dirTo, dirFrom];
+  [selectedCityFrom, selectedCityTo] = [selectedCityTo, selectedCityFrom];
+  [isOtherFrom, isOtherTo] = [isOtherTo, isOtherFrom];
+  [otherCityFrom, otherCityTo] = [otherCityTo, otherCityFrom];
+  updateHeroStats();
+  const btn = document.getElementById('heroSwitchBtn');
+  btn.classList.add('switching');
+  setTimeout(() => btn.classList.remove('switching'), 400);
+}
+
+// ============================================================
+// CUSTOMER TYPE
+// ============================================================
+function pickKategori(val, activeId, inactiveId) {
+  selectedKategori = val;
+  document.getElementById(activeId).classList.add('sel-red');
+  document.getElementById(inactiveId).classList.remove('sel-red');
+  document.querySelectorAll('input[name="kategori"]').forEach(r => r.checked = (r.value === val));
+  hideErr('err_kategori');
+  document.getElementById('newCustomerSection').classList.toggle('visible', val === 'New Customer');
+  document.getElementById('regularCustomerSection').classList.toggle('visible', val === 'Regular Customer');
+}
+
+// ============================================================
+// EMAIL CHECK
+// ============================================================
+function checkCustomerEmail() {
+  const email = (document.getElementById('email_regular').value || '').trim();
+  const resultDiv = document.getElementById('emailCheckResult');
+  const foundFields = document.getElementById('regularFoundFields');
+  const notFoundFields = document.getElementById('regularNotFoundFields');
+  const btn = document.getElementById('btnCheckEmail');
+
+  if (!email || !/\S+@\S+\.\S+/.test(email)) { showErr('err_email_regular'); return; }
+  hideErr('err_email_regular');
+
+  btn.disabled = true; btn.textContent = '...';
+  resultDiv.style.display = 'none';
+  foundFields.style.display = 'none';
+  notFoundFields.style.display = 'none';
+  customerEmailVerified = false; regularPhoneOnFile = '';
+
+  const cbName = 'wonderozCb_' + Date.now();
+  const script = document.createElement('script');
+
+  const timeout = setTimeout(() => {
+    cleanup();
+    resultDiv.className = 'email-check-result error';
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = t('email_timeout');
+    btn.disabled = false; btn.textContent = t('btn_check');
+  }, 8000);
+
+  window[cbName] = function(data) {
+    cleanup(); clearTimeout(timeout);
+    btn.disabled = false; btn.textContent = t('btn_check');
+    if (data.found) {
+      resultDiv.className = 'email-check-result found';
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = t('email_found', data.nama || '');
+      if (data.nama) document.getElementById('nama_pengirim_regular').value = data.nama;
+      regularPhoneOnFile = data.telp || '(on file)';
+      foundFields.style.display = 'block';
+      customerEmailVerified = true;
+    } else {
+      resultDiv.className = 'email-check-result notfound';
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = t('email_notfound');
+      notFoundFields.style.display = 'block';
+    }
+  };
+
+  function cleanup() {
+    if (script.parentNode) script.parentNode.removeChild(script);
+    delete window[cbName];
+  }
+  script.onerror = function() {
+    cleanup(); clearTimeout(timeout);
+    resultDiv.className = 'email-check-result error';
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = t('email_error');
+    btn.disabled = false; btn.textContent = t('btn_check');
+  };
+  script.src = `${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}&callback=${cbName}`;
+  document.head.appendChild(script);
+}
+
+// ============================================================
+// GET SENDER INFO
+// ============================================================
+function getSenderInfo() {
+  if (selectedKategori === 'New Customer') return {
+    name: document.getElementById('nama_pengirim').value.trim(),
+    phone: document.getElementById('telp_pengirim').value.trim(),
+    email: document.getElementById('email_pengirim').value.trim(),
+  };
+  const email = document.getElementById('email_regular').value.trim();
+  if (customerEmailVerified) return {
+    name: document.getElementById('nama_pengirim_regular').value.trim(),
+    phone: regularPhoneOnFile || '(on file)',
+    email: email,
+  };
+  return {
+    name: document.getElementById('nama_pengirim_new2').value.trim(),
+    phone: document.getElementById('telp_pengirim_new2').value.trim(),
+    email: email,
+  };
+}
+
+// ============================================================
+// CHECKBOX TOGGLES
+// ============================================================
+function toggleCheck(label) {
+  const cb = label.querySelector('input[type="checkbox"]');
+  if (cb) { label.classList.toggle('checked', cb.checked); hideErr('err_jenis_barang'); }
+}
+function toggleConfirm(label) {
+  const cb = label.querySelector('input[type="checkbox"]');
+  if (cb) { label.classList.toggle('checked', cb.checked); hideErr('err_konfirmasi'); }
+}
+
+// ============================================================
+// VALIDATE
+// ============================================================
+// ============================================================
+// FORBIDDEN ITEMS MODAL
+// ============================================================
+var forbiddenModalOpened = false;
+
+function openForbiddenModal() {
+  forbiddenModalOpened = true;
+  var overlay = document.getElementById('forbiddenModalOverlay');
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  // Hide validation error once user has opened the modal
+  hideErr('err_forbidden');
+  // Focus the close button for accessibility
+  setTimeout(function() {
+    document.getElementById('btnForbiddenClose').focus();
+  }, 120);
+}
+
+function closeForbiddenModal(event, force) {
+  if (!force && event && event.target !== document.getElementById('forbiddenModalOverlay')) return;
+  var overlay = document.getElementById('forbiddenModalOverlay');
+  overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+  // Return focus to trigger button
+  document.getElementById('btnForbiddenTrigger').focus();
+}
+
+// Allow ESC key to close modal
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var overlay = document.getElementById('forbiddenModalOverlay');
+    if (overlay && overlay.classList.contains('is-open')) {
+      closeForbiddenModal(null, true);
+    }
+  }
+});
+
+// ============================================================
+// VALIDATION
+// ============================================================
+function validate() {
+  let ok = true;
+  if (!selectedKategori) { showErr('err_kategori'); ok = false; } else hideErr('err_kategori');
+
+  if (selectedKategori === 'New Customer') {
+    const req = (id, errId) => {
+      const el = document.getElementById(id);
+      const empty = !el || !el.value.trim();
+      markField(id, empty);
+      if (empty) { showErr(errId); ok = false; } else { markField(id, false); hideErr(errId); }
+    };
+    req('nama_pengirim', 'err_nama_pengirim');
+    req('telp_pengirim', 'err_telp_pengirim');
+    const ep = document.getElementById('email_pengirim');
+    if (!ep.value.trim() || !/\S+@\S+\.\S+/.test(ep.value)) {
+      markField('email_pengirim', true); showErr('err_email_pengirim'); ok = false;
+    } else { markField('email_pengirim', false); hideErr('err_email_pengirim'); }
+  } else if (selectedKategori === 'Regular Customer') {
+    const er = document.getElementById('email_regular');
+    if (!er.value.trim() || !/\S+@\S+\.\S+/.test(er.value)) {
+      markField('email_regular', true); showErr('err_email_regular'); ok = false;
+    } else { markField('email_regular', false); hideErr('err_email_regular'); }
+    if (customerEmailVerified) {
+      const nf = document.getElementById('nama_pengirim_regular');
+      if (!nf.value.trim()) { markField('nama_pengirim_regular', true); showErr('err_nama_pengirim_regular'); ok = false; }
+      else { markField('nama_pengirim_regular', false); hideErr('err_nama_pengirim_regular'); }
+    } else if (document.getElementById('regularNotFoundFields').style.display !== 'none') {
+      ['nama_pengirim_new2','telp_pengirim_new2'].forEach(id => {
+        const el = document.getElementById(id);
+        const empty = !el || !el.value.trim();
+        markField(id, empty);
+        if (empty) { showErr('err_' + id); ok = false; } else hideErr('err_' + id);
+      });
+    }
+  }
+
+  const reqR = (id, errId) => {
+    const el = document.getElementById(id);
+    const empty = !el || !el.value.trim();
+    markField(id, empty);
+    if (empty) { showErr(errId); ok = false; } else { markField(id, false); hideErr(errId); }
+  };
+  reqR('nama_penerima', 'err_nama_penerima');
+  reqR('telp_penerima', 'err_telp_penerima');
+  reqR('alamat_penerima', 'err_alamat_penerima');
+  reqR('deskripsi_barang', 'err_deskripsi_barang');
+
+  const ep2 = document.getElementById('email_penerima');
+  if (!ep2.value.trim() || !/\S+@\S+\.\S+/.test(ep2.value)) {
+    markField('email_penerima', true); showErr('err_email_penerima'); ok = false;
+  } else { markField('email_penerima', false); hideErr('err_email_penerima'); }
+
+  if (![...document.querySelectorAll('input[name="jenis_barang"]:checked')].length) {
+    showErr('err_jenis_barang'); ok = false;
+  } else hideErr('err_jenis_barang');
+
+  const allConfirm = document.querySelectorAll('input[name="konfirmasi"]');
+  const checkedConfirm = document.querySelectorAll('input[name="konfirmasi"]:checked');
+  if (checkedConfirm.length < allConfirm.length) { showErr('err_konfirmasi'); ok = false; }
+  else hideErr('err_konfirmasi');
+
+  if (!forbiddenModalOpened) { showErr('err_forbidden'); ok = false; }
+  else hideErr('err_forbidden');
+
+  return ok;
+}
+
+// ============================================================
+// SUBMIT
+// ============================================================
+document.getElementById('shipForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!validate()) {
+    document.querySelector('.err-msg[style*="block"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  const btn = document.getElementById('btnSubmit');
+  document.getElementById('btnText').textContent = t('sending_text');
+  document.getElementById('spinner').style.display = 'block';
+  btn.disabled = true;
+
+  const sender = getSenderInfo();
+  const routeStr = `${CITIES[dirFrom].name} → ${CITIES[dirTo].name}`;
+  const jenisList = [...document.querySelectorAll('input[name="jenis_barang"]:checked')].map(c => '• ' + c.value).join('\n');
+
+  const params = {
+    to_email: 'WonderOz.JasTip@gmail.com',
+    customer_type: selectedKategori,
+    shipping_route: routeStr,
+    box_details: '',
+    sender_name: sender.name,
+    sender_phone: sender.phone,
+    sender_email: sender.email,
+    recipient_name: document.getElementById('nama_penerima').value.trim(),
+    recipient_phone: document.getElementById('telp_penerima').value.trim(),
+    recipient_email: document.getElementById('email_penerima').value.trim(),
+    recipient_address: document.getElementById('alamat_penerima').value.trim(),
+    item_description: document.getElementById('deskripsi_barang').value.trim(),
+    item_categories: jenisList || '(none selected)',
+    declaration: 'All 5 declaration statements confirmed ✓',
+    timestamp: new Date().toLocaleString('en-AU', { dateStyle: 'full', timeStyle: 'short' }),
+  };
+
+  try {
+    saveToSheet({
+      timestamp: new Date().toLocaleString('en-AU', { dateStyle: 'full', timeStyle: 'short' }),
+      customer_type: selectedKategori,
+      sender_name: sender.name,
+      sender_phone: sender.phone,
+      sender_email: sender.email,
+      recipient_name: document.getElementById('nama_penerima').value.trim(),
+      recipient_phone: document.getElementById('telp_penerima').value.trim(),
+      recipient_email: document.getElementById('email_penerima').value.trim(),
+    });
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params, EMAILJS_PUBLIC_KEY);
+    document.getElementById('shipForm').style.display = 'none';
+    document.getElementById('successBox').style.display = 'block';
+    document.getElementById('successBox').scrollIntoView({ behavior: 'smooth' });
+  } catch (err) {
+    document.getElementById('errorMsg').innerHTML =
+      t('error_body') + '<br><small style="color:#999">Error: ' + (err.text || err.message || JSON.stringify(err)) + '</small>';
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorBox').scrollIntoView({ behavior: 'smooth' });
+  } finally {
+    document.getElementById('btnText').textContent = t('btn_submit');
+    document.getElementById('spinner').style.display = 'none';
+    btn.disabled = false;
+  }
+});
+
+function saveToSheet(data) {
+  try {
+    var iframe = document.getElementById('_submitFrame');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = '_submitFrame'; iframe.name = '_submitFrame';
+      iframe.style.display = 'none'; document.body.appendChild(iframe);
+    }
+    var form = document.createElement('form');
+    form.method = 'POST'; form.action = APPS_SCRIPT_URL;
+    form.target = '_submitFrame'; form.enctype = 'application/x-www-form-urlencoded';
+    var fields = { timestamp:data.timestamp||'', customer_type:data.customer_type||'', sender_name:data.sender_name||'', sender_phone:data.sender_phone||'', sender_email:data.sender_email||'', recipient_name:data.recipient_name||'', recipient_phone:data.recipient_phone||'', recipient_email:data.recipient_email||'' };
+    Object.keys(fields).forEach(function(key) {
+      var input = document.createElement('input');
+      input.type = 'hidden'; input.name = key; input.value = fields[key];
+      form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(function(){ document.body.removeChild(form); }, 3000);
+  } catch (err) { console.warn('Could not save to sheet:', err); }
+}
+
+// ============================================================
+// RESET
+// ============================================================
+function resetForm() {
+  document.getElementById('shipForm').reset();
+  document.getElementById('shipForm').style.display = 'block';
+  document.getElementById('successBox').style.display = 'none';
+  document.getElementById('errorBox').style.display = 'none';
+  selectedKategori = ''; selectedCityFrom = ''; selectedCityTo = '';
+  isOtherFrom = false; isOtherTo = false; otherCityFrom = ''; otherCityTo = '';
+  customerEmailVerified = false; regularPhoneOnFile = '';
+  dirFrom = 'au'; dirTo = 'id';
+  // Reset Forbidden Items modal gate — user must re-open before each new submission
+  forbiddenModalOpened = false;
+  hideErr('err_forbidden');
+  ['rc_new','rc_regular'].forEach(id => document.getElementById(id).classList.remove('sel-red'));
+  document.querySelectorAll('.check-item,.confirm-item').forEach(el => el.classList.remove('checked'));
+  document.getElementById('newCustomerSection').classList.remove('visible');
+  document.getElementById('regularCustomerSection').classList.remove('visible');
+  document.getElementById('emailCheckResult').style.display = 'none';
+  document.getElementById('regularFoundFields').style.display = 'none';
+  document.getElementById('regularNotFoundFields').style.display = 'none';
+  initRouteBar();
+  setTimeout(() => { document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' }); }, 100);
+}
+
+function hideError() { document.getElementById('errorBox').style.display = 'none'; }
+
+function toggleMobileNav() {
+  const nav = document.getElementById('mainNav');
+  const btn = document.getElementById('navHamburger');
+  nav.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+
+document.getElementById('mainNav').querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mainNav').classList.remove('mobile-open');
+    document.getElementById('navHamburger').classList.remove('open');
+  });
+});
+
+// ============================================================
+// INIT — load saved language preference
+// ============================================================
+(function() {
+  let savedLang = 'en';
+  try { savedLang = localStorage.getItem('wonderoz_lang') || 'en'; } catch(e) {}
+  initRouteBar();
+  if (savedLang === 'id') setLang('id');
+})();
+</script>
+
+</body>
+</html>
